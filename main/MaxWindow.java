@@ -11,7 +11,7 @@ public class MaxWindow {
     public static int[] maxSlidingWindow(int[] nums, int k) {
         if(nums == null || nums.length < 2 || k < 2) return nums;
 
-        // 双向队列 保存当前窗口最大值的数组位置 保证队列中数组位置的数值按从大到小排序
+        // 双向队列 保存当前窗口最大值在数组中的位置index 保证队列中index按从大到小排序
         LinkedList<Integer> queue = new LinkedList<>();
         // 结果数组
         int[] result = new int[nums.length-k+1];
