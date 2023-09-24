@@ -47,7 +47,7 @@ public class TrapRainWater {
         int res = 0;
 
         for (int k = 1; k < len - 1 ; k++) {
-            if (height[i-1] < height[j+1]){ //看柱子left
+            if (height[i-1] < height[j+1]){ //看柱子i
                 iLeftMax = Math.max(iLeftMax , height[i-1]);
                 if (iLeftMax > height[i]) {
                     res += iLeftMax - height[i];
