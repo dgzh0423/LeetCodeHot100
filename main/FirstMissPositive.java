@@ -5,6 +5,7 @@ public class FirstMissPositive {
     //没有空间复杂度的限制，可以将数组所有的数放入哈希表，随后从 1 开始依次枚举正整数，并判断其是否在哈希表中
     public static int firstMissingPositive(int[] nums) {
         int n = nums.length;
+        //时间复杂度O(n) 空间复杂度O(1)
         for (int i = 0; i < n; i++) {
             //对于 x = nums[i], x∈[1,n],  x 应该放在数组中索引为 x-1 的位置上
             while (nums[i] >= 1 && nums[i] <= n && nums[i] != nums[nums[i] - 1]) {
