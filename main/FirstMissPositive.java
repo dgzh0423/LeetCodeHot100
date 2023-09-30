@@ -1,5 +1,8 @@
 package main;
 
+/**
+ * @author 15304
+ */
 public class FirstMissPositive {
 
     //没有空间复杂度的限制，可以将数组所有的数放入哈希表，随后从 1 开始依次枚举正整数，并判断其是否在哈希表中
@@ -13,7 +16,9 @@ public class FirstMissPositive {
             }
         }
         for (int i = 0; i < n; i++) {
-            if (nums[i] != i + 1) return i + 1;
+            if (nums[i] != i + 1) {
+                return i + 1;
+            }
         }
         return n + 1;//如果nums正好保存了1到n, 则结果为 n+1
     }
