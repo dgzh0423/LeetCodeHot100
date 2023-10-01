@@ -1,4 +1,4 @@
-package main;
+package main.substring;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package main;
+package main.array;
 
 public class SubarrayWithMaxSum {
     public static int maxSubArray(int[] nums) {

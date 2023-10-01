@@ -1,4 +1,4 @@
-package main;
+package main.twopoints;
 
 /**
  * 水面积计算公式：S(i,j) = min(h[i],h[j]) × (j−i)

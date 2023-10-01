@@ -1,4 +1,4 @@
-package main;
+package main.matrix;
 
 /**
  * @author 15304

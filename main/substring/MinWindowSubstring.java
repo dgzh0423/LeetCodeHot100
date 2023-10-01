@@ -1,4 +1,4 @@
-package main;
+package main.substring;
 
 public class MinWindowSubstring {
     public static String minWindow(String s, String t) {

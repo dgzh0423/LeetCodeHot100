@@ -1,4 +1,4 @@
-package main;
+package main.twopoints;
 
 public class TrapRainWater {
     public static int trap(int[] height) {

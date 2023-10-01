@@ -1,4 +1,4 @@
-package main;
+package main.hash;
 
 import java.util.HashSet;
 import java.util.Set;
