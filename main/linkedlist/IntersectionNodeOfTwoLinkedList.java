@@ -1,5 +1,8 @@
 package main.linkedlist;
 
+/**
+ * @author 15304
+ */
 public class IntersectionNodeOfTwoLinkedList {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) return null;
