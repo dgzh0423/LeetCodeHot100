@@ -7,8 +7,9 @@ public class IntersectionNodeOfTwoLinkedList {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) return null;
 
-        // 若相交，链表A： a+c, 链表B : b+c. 有a+c+b+c = b+c+a+c，会在公共处c起点相遇。
-        // 若不相交，a +b = b+a 。因此相遇处是NULL
+
+        // pA和pB走过的长度都相同，都是A链和B链的长度之和
+        // 如果相交，则会提前在相交点相遇，如果没有相交点，则会在最后相遇。
         ListNode pA = headA, pB = headB;
         while (pA != pB) {
             pA = pA == null ? headB : pA.next;
