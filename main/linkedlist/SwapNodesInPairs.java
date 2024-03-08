@@ -23,6 +23,7 @@ public class SwapNodesInPairs {
         head.next = swapPairsRecursion(next.next);
         next.next = head;
 
+        //交换完成，next变为head
         return next;
 
     }

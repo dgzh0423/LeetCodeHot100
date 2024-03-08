@@ -29,7 +29,6 @@ public class RemoveNthNode {
         }
         //此时slow指向要删除节点的前一个节点
         slow.next = slow.next.next;
-        slow.next.next = null;
         //返回真正的头结点
         return dum.next;
 
