@@ -33,8 +33,8 @@ public class SortLinkedList {
         ListNode slow = head;
         ListNode fast = head.next.next;
 
-        while (fast != null && fast.next != null) { //  当 fast 遇到或越过尾节点 时跳出循环，并返回 slow 即可
-            //快慢双指针 fast, slow ，「快指针 fast」每轮走 2 步，「慢指针 slow」每轮走 1 步
+        while (fast != null && fast.next != null) {
+            //快慢双指针 fast, slow
             slow = slow.next;
             fast = fast.next.next;
         }
@@ -48,19 +48,22 @@ public class SortLinkedList {
         ListNode dum = new ListNode(0), cur = dum;
 
         while (list1 != null && list2 != null) {
-            if (list1.val < list2.val) {//当 list1.val < list2.val时, cur的后继节点指定为list1, 且list1向前走一步
+            //当 list1.val < list2.val时, cur的后继节点指定为list1, 且list1向前走一步
+            if (list1.val < list2.val) {
                 cur.next = list1;
                 list1 = list1.next;
             }
-            else {//当 list1.val ≥ list2.val时，cur的后继节点指定为list2, 且list2向前走一步
+            //当 list1.val ≥ list2.val时，cur的后继节点指定为list2, 且list2向前走一步
+            else {
                 cur.next = list2;
                 list2 = list2.next;
             }
-            cur = cur.next; //节点 cur 向前走一步
+            cur = cur.next;
         }
-        cur.next = list1 != null ? list1 : list2;//合并剩余尾部，list1或者list2为空
-
-        return dum.next;//合并链表在伪头节点 dum 之后，因此返回 dum.next 即可
+        //合并剩余尾部，list1或者list2为空
+        cur.next = list1 != null ? list1 : list2;
+        //合并链表在伪头节点 dum 之后，因此返回 dum.next 即可
+        return dum.next;
     }
 
     public static void main(String[] args) {
