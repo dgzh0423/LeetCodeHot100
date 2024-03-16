@@ -6,8 +6,7 @@ package main.binarysearch;
 public class FindMinimumInRotation {
     //给定一个元素值互不相同，且旋转过n次的数组 nums，找出数组中的最小元素
     public int findMin(int[] nums) {
-        int left = 0;
-        int right = nums.length - 1;
+        int left = 0, right = nums.length - 1;
         while (left < right) {
             int mid = left + (right - left) / 2;
             // 中值 > 右值，说明最小值在右半边，收缩左边界
