@@ -67,6 +67,12 @@ public class NQueens {
 
     public static void main(String[] args) {
         NQueens n = new NQueens();
-        System.out.println(n.solveQueens(4));
+        int N = 8;
+        List<List<String>> lists = n.solveQueens(N);
+        System.out.println( N + " 皇后有 " + lists.size() + " 种解法");
+        for (List<String> list : lists) {
+            System.out.println(list);
+        }
+
     }
 }
