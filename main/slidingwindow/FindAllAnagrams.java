@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author 15304
+ */
 public class FindAllAnagrams {
     public static List<Integer> findAnagrams(String s, String p){
 
         int n = s.length(), m = p.length();
         List<Integer> res = new ArrayList<>();
-        if (n < m) return res;
+        if (n < m) {
+            return res;
+        }
 
         int[] pCnt = new int[26];
         int[] sCnt = new int[26];
@@ -25,9 +30,9 @@ public class FindAllAnagrams {
         //3.从m处继续遍历s,每次增加一个新字母，都要去除一个旧字母
         for (int i = m; i < n ; i++) {
             sCnt[s.charAt(i) - 'a']++;
-            sCnt[s.charAt(i - m) - 'a']--;//
+            sCnt[s.charAt(i - m) - 'a']--;
             if(Arrays.equals(sCnt, pCnt)){
-                res.add(i - m + 1);//
+                res.add(i - m + 1);
             }
         }
         return res;
@@ -36,11 +41,13 @@ public class FindAllAnagrams {
     public static List<Integer> findAnagramsWithTwoPoints(String s, String p){
         int n = s.length(), m = p.length();
         List<Integer> res = new ArrayList<>();
-        if(n < m) return res;
+        if(n < m) {
+            return res;
+        }
 
         int[] pCnt = new int[26];
         int[] sCnt = new int[26];
-
+        // 记录字符串p中每个字母和出现的次数
         for(int i = 0; i < m; i++){
             pCnt[p.charAt(i) - 'a'] ++;
         }
@@ -51,7 +58,7 @@ public class FindAllAnagrams {
             //curLeft, curRight表示字符串s中索引为left和right的字符在数组中的索引
             int curRight = s.charAt(right) - 'a';
             sCnt[curRight]++;
-            //当sCnt和pCnt不相等时，弹出左侧的字母，左指针右移
+            // 当right指向的字符超过p中出现的次数，或者根本不在p中出现过，就需要更新left的位置
             while(sCnt[curRight] > pCnt[curRight]){
                 int curLeft = s.charAt(left) - 'a';
                 sCnt[curLeft]--;

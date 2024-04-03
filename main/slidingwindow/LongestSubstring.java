@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * 滑动窗口
+ * @author 15304
  */
 public class LongestSubstring {
     public static int lengthOfLongestSubstring(String s) {
@@ -14,13 +15,13 @@ public class LongestSubstring {
 
         for (int end = 0, start = 0; end < s.length(); end++) {
             char element = s.charAt(end);
-            //遇到重复的字符时，start需要从该重复的字符的后一个字符开始(index+1)
+            //遇到重复的字符时，start需要从该重复的字符的后一个字符开始
             if (map.containsKey(element)) {
                 start = Math.max(map.get(element) + 1, start);
             }
-            //计算区间长度
+            //计算区间的长度
             res = Math.max(res, end - start + 1);
-            //
+            //更新当前字符的index下标
             map.put(element, end);
         }
         return res;

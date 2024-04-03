@@ -20,7 +20,8 @@ public class FirstMissPositive {
                 return i + 1;
             }
         }
-        return n + 1;//如果nums正好保存了1到n, 则结果为 n+1
+        //如果nums正好保存了1到n, 则结果为 n+1
+        return n + 1;
     }
     public static void swap(int[] nums, int index1, int index2) {
         // 互换位置

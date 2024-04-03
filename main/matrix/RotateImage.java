@@ -18,10 +18,14 @@ public class RotateImage {
                 // 暂存 A 至 tmp
                 int tmp = matrix[i][j];
                 // 元素旋转操作
-                matrix[i][j] = matrix[n - 1 - j][i]; //A <- D
-                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];//D <- C
-                matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];//C <- B
-                matrix[j][n - 1 - i] = tmp;//B <- tmp(A)
+                //A <- D
+                matrix[i][j] = matrix[n - 1 - j][i];
+                //D <- C
+                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];
+                //C <- B
+                matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];
+                //B <- tmp(A)
+                matrix[j][n - 1 - i] = tmp;
             }
         }
     }

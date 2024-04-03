@@ -7,12 +7,13 @@ import java.util.Map;
 /**
  * 思路：关键在于如何找到target - nums[i]
  * map的key存数值，value存该值的数组下标
+ * @author 15304
  */
 public class TwoNumsSum {
 
     public static int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; ++i){
+        for (int i = 0; i < nums.length; i++){
             if (map.containsKey(target - nums[i])){
                 return new int[] { map.get(target - nums[i]), i};
             }

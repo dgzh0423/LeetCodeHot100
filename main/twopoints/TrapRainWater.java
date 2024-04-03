@@ -1,5 +1,8 @@
 package main.twopoints;
 
+/**
+ * @author 15304
+ */
 public class TrapRainWater {
     public static int trap(int[] height) {
         int res = 0;
@@ -13,31 +16,42 @@ public class TrapRainWater {
            时间复杂度为 O(n)  空间复杂度 O(n）
          */
 
-        for (int i = 1; i < height.length - 1; i++) {//两端的列不会存水
-            int leftMax = 0;
-            for (int j = i-1; j>=0; j--){
-                if (height[j] > leftMax){//这里≥或者＞无所谓，因为我们只需要左边最高列的高度
-                    leftMax = height[j];
-                }
+        //两端的列不会存水
+        for (int i = 1; i < height.length - 1; i++) {
+            // 找到 min{柱子i左边最高列的高度，柱子i右边最高列的高度}
+            int min = getMin(height, i);
+            // 只有当前列高度 < min{左边最高列的高度，右边最高列的高度} 该列才可存水，存水量为：min{左边最高列，右边最高列} - 当前列高度
+            if (height[i] < min) {
+                res += (min-height[i]);
             }
-
-            int rightMax = 0;
-            for (int j = i+1; j < height.length; j++){
-                if (height[j] > rightMax){//同理
-                    rightMax = height[j];
-                }
-            }
-            int min = Math.min(leftMax, rightMax);
-            if (height[i] < min) res += (min-height[i]);//只有当前列高度 < min{左边最高列的高度，右边最高列的高度} 该列才可存水，存水量为：min{左边最高列，右边最高列} - 当前列高度
         }
-
         return res;
     }
 
+    private static int getMin(int[] height, int i) {
+        int leftMax = 0;
+        for (int j = i -1; j>=0; j--){
+            //这里≥或者＞无所谓，因为我们只需要左边最高列的高度
+            if (height[j] > leftMax){
+                leftMax = height[j];
+            }
+        }
+
+        int rightMax = 0;
+        for (int j = i +1; j < height.length; j++){
+            // 找到右边最高列的高度
+            if (height[j] > rightMax){
+                rightMax = height[j];
+            }
+        }
+        return Math.min(leftMax, rightMax);
+    }
+
     /*
-        假设两柱子分别为 i，j，那么就有 iLeftMax,iRightMax,jLeftMax,jRightMax 这四个变量。
-        当 iLeftMax < jRightMax 的话，那么我们就只需要判断 iLeftMax 是否比 i 高
-        当 iLeftMax >= jRightMax 的话，同理，只需要判断 jRightMax 是否比 j 高
+        假设两柱子分别为 i，j，那么就有 iLeftMax,iRightMax,jLeftMax,jRightMax 这四个变量
+        由于 j > i ，故 jLeftMax >= iLeftMax，iRightMax >= jRightMax.
+        当 iLeftMax < jRightMax 的话，必有 iLeftMax < iRightMax 只需要判断 iLeftMax 是否比 i 高
+        当 iLeftMax >= jRightMax 的话，必有 jLeftMax >= jRightMax 只需要判断 jRightMax 是否比 j 高
         时间复杂度为 O(n)  空间复杂度 O(1）
      */
     public static int trapWithTwoPoints(int[] height){
@@ -47,7 +61,8 @@ public class TrapRainWater {
         int res = 0;
 
         for (int k = 1; k < len - 1 ; k++) {
-            if (height[i-1] < height[j+1]){ //看柱子i
+            //看柱子i
+            if (height[i-1] < height[j+1]){
                 iLeftMax = Math.max(iLeftMax , height[i-1]);
                 if (iLeftMax > height[i]) {
                     res += iLeftMax - height[i];

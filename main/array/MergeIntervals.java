@@ -5,13 +5,18 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * @author 15304
+ */
 public class MergeIntervals {
     /*
     时间复杂度：O(nlogn)，空间复杂度：O(logn)
      */
     public static int[][] merge(int[][] intervals) {
 
-        if (intervals.length == 0) return new int[0][2];
+        if (intervals.length == 0) {
+            return new int[0][2];
+        }
 
         //先按照区间左端点升序排序 Arrays.sort(intervals, (v1, v2) -> v1[0] - v2[0]);
         Arrays.sort(intervals, Comparator.comparingInt(v -> v[0]));
@@ -23,7 +28,8 @@ public class MergeIntervals {
             //如果当前区间的左端点L > 数组 merged 中最后一个区间的右端点merged.get(merged.size() - 1)[1]，那么它们不会重合,可以直接加入merged
             if (merged.isEmpty() || merged.get(merged.size() - 1)[1] < L) {
                 merged.add(new int[]{L, R});
-            } else { //否则重合，需要比较当前区间的右端点与数组 merged 中最后一个区间的右端点，取较大者作为数组 merged 中最后一个区间的右端点
+            } else {
+                //否则重合，需要比较当前区间的右端点与数组 merged 中最后一个区间的右端点，取较大者作为数组 merged 中最后一个区间的右端点
                 merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], R);
             }
         }

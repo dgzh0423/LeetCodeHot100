@@ -2,6 +2,7 @@ package main.twopoints;
 
 /**
  * 水面积计算公式：S(i,j) = min(h[i],h[j]) × (j−i)
+ * @author 15304
  */
 public class MaxWaterArea {
     public static int maxArea(int[] height){

@@ -13,11 +13,19 @@ public class Search2DMatrix {
         int i = matrix.length - 1, j = 0;
 
         while(i >= 0 && j < matrix[0].length) {
-            if(matrix[i][j] > target) i--; //当 matrix[i][j] > target 时，执行 i-- ，即消去第 i 行元素。
-            else if(matrix[i][j] < target) j++; //当 matrix[i][j] < target 时，执行 j++ ，即消去第 j 列元素。
-            else return true; //当 matrix[i][j] = target 时，找到目标值。
+            //当 matrix[i][j] > target 时，执行 i-- ，即消去第 i 行元素
+            if(matrix[i][j] > target) {
+                i--;
+            }
+            //当 matrix[i][j] < target 时，执行 j++ ，即消去第 j 列元素
+            else if(matrix[i][j] < target) {
+                j++;
+            }
+            //当 matrix[i][j] = target 时，找到目标值
+            else {
+                return true;
+            }
         }
-
         return false;
     }
     public static void main(String[] args) {

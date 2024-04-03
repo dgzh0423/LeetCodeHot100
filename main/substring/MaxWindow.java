@@ -6,10 +6,13 @@ import java.util.LinkedList;
 /**
  * 对于长度为 n 的数组 nums 而言，窗口的数量为 n−k+1
  * 对于两个相邻（只差了一个位置）的滑动窗口，它们共用着 k−1 个元素，而只有 1 个元素是变化的
+ * @author 15304
  */
 public class MaxWindow {
     public static int[] maxSlidingWindow(int[] nums, int k) {
-        if(nums == null || nums.length < 2 || k < 2) return nums;
+        if(nums == null || nums.length < 2 || k < 2) {
+            return nums;
+        }
 
         // 双向队列 保存当前窗口最大值在数组中的位置index 保证队列中index按从大到小排序
         LinkedList<Integer> queue = new LinkedList<>();
