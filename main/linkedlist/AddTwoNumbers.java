@@ -27,10 +27,12 @@ public class AddTwoNumbers {
             cur.next = new ListNode(sum);
             cur = cur.next;
 
-            if(l1 != null)
+            if(l1 != null) {
                 l1 = l1.next;
-            if(l2 != null)
+            }
+            if(l2 != null) {
                 l2 = l2.next;
+            }
         }
         //如果两个链表全部遍历完毕后，进位值为 1，则在新链表最前方添加节点 1
         if(carry == 1) {

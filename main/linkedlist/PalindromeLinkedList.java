@@ -16,7 +16,7 @@ public class PalindromeLinkedList {
         }
         //slow和fast分别用于走一半和走全程
         ListNode slow = head, fast = head;
-        //pre和prepre用于反转链表
+        //pre和prepre用于反转链表前一半
         ListNode pre = head, prepre = null;
         while(fast != null && fast.next != null) {
             pre = slow;

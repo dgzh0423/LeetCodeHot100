@@ -7,17 +7,19 @@ public class LinkedListCycleMedium {
 
     /**
      * 从头结点head开始遍历，让每个结点的next指针指向自己，如果有环，则有head.next = head，此时head指向入环的第一个节点
-     * 该方法超出时间限制
+     * 该方法超出时间限制，且修改了链表结构
      * @param head
      * @return
      */
     public ListNode detectCycle(ListNode head) {
         //如果head为空，或者他的next指向为空，直接返回null
-        if (head == null || head.next == null)
+        if (head == null || head.next == null) {
             return null;
+        }
         //如果出现head.next = head表示有环
-        if (head.next == head)
+        if (head.next == head) {
             return head;
+        }
         ListNode nextNode = head.next;
         //当前节点的next指向他自己，相当于把它删除了
         head.next = head;
@@ -33,7 +35,9 @@ public class LinkedListCycleMedium {
     public ListNode detectCycleTwoPoints(ListNode head) {
         ListNode fast = head, slow = head;
         do {
-            if (fast == null || fast.next == null) return null;
+            if (fast == null || fast.next == null) {
+                return null;
+            }
             fast = fast.next.next;
             slow = slow.next;
             //第一次相遇时，fast 和 slow 指针分别走了2n，n个环的长度

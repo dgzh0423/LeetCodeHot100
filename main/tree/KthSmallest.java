@@ -17,10 +17,14 @@ public class KthSmallest {
      * @param root
      */
     void dfs(TreeNode root) {
-        if (root == null|| k == 0) return;
+        if (root == null|| k == 0) {
+            return;
+        }
 
         dfs(root.left);
-        if (--k == 0) res = root.val;
+        if (--k == 0) {
+            res = root.val;
+        }
         dfs(root.right);
     }
 

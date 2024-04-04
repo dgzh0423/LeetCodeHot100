@@ -15,7 +15,7 @@ public class ReverseLinkedList {
         ListNode pre = null;
         ListNode cur = head;
         ListNode tmp;
-        while(cur!=null) {
+        while(cur != null) {
             //记录当前节点的下一个节点
             tmp = cur.next;
             //然后将当前节点指向pre
@@ -51,6 +51,5 @@ public class ReverseLinkedList {
 
     }
     public static void main(String[] args) {
-
     }
 }

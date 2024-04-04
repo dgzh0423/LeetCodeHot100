@@ -49,11 +49,11 @@ public class ReverseTree {
             cur.left = cur.right;
             cur.right = tmp;
             //如果当前节点的左子树不为空，则放入队列等待后续处理
-            if(cur.left!=null) {
+            if(cur.left != null) {
                 queue.add(cur.left);
             }
             //如果当前节点的右子树不为空，则放入队列等待后续处理
-            if(cur.right!=null) {
+            if(cur.right != null) {
                 queue.add(cur.right);
             }
         }
