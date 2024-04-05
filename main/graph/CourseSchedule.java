@@ -19,28 +19,36 @@ public class CourseSchedule {
      */
     public boolean canFinish(int numCourses, int[][] prerequisites) {
 
+        // indegrees记录每节课的入度
         int[] indegrees = new int[numCourses];
+        // adjacency记录哪些课程需要先上哪个前置课
         List<List<Integer>> adjacency = new ArrayList<>();
         Queue<Integer> queue = new LinkedList<>();
-        for(int i = 0; i < numCourses; i++)
+        for(int i = 0; i < numCourses; i++) {
             adjacency.add(new ArrayList<>());
+        }
         // cp: [1,0] 对应 0->1, 先上0，再上1
         for(int[] cp : prerequisites) {
             indegrees[cp[0]]++;
             adjacency.get(cp[1]).add(cp[0]);
         }
         // 记录所有入度=0的course
-        for(int i = 0; i < numCourses; i++)
-            if(indegrees[i] == 0) queue.add(i);
+        for(int i = 0; i < numCourses; i++) {
+            if(indegrees[i] == 0) {
+                queue.add(i);
+            }
+        }
         // 删除该课程和以该课程为前置的有向边，有向边关系保存在adjacency
         while(!queue.isEmpty()) {
             int pre = queue.poll();
             numCourses--;
-            for(int cur : adjacency.get(pre))
-                if(--indegrees[cur] == 0) queue.add(cur);
+            for(int cur : adjacency.get(pre)) {
+                if(--indegrees[cur] == 0) {
+                    queue.add(cur);
+                }
+            }
         }
         return numCourses == 0;
-
     }
 
     public static void main(String[] args) {

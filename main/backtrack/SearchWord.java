@@ -29,7 +29,8 @@ public class SearchWord {
         }
 
         // 超出网格范围 或 当前遍历到的单词字符与网格内的字符不同
-        if (inArea(board, x, y) || board[x][y] != word.charAt(index)){
+        if (x >= board.length || x < 0 || y >= board[0].length || y < 0 || visited[x][y]
+                || board[x][y] != word.charAt(index)) {
             return false;
         }
 
@@ -44,13 +45,9 @@ public class SearchWord {
         return found;
     }
 
-    private boolean inArea(char[][] board, int x, int y){
-        return x >= 0 && x < board.length && y >= 0 && y < board[0].length;
-    }
-
     public static void main(String[] args) {
         char[][] board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
-        String word = "ABCB";
+        String word = "ABCCED";
         SearchWord sw = new SearchWord();
         System.out.println(sw.exist(board, word));
     }

@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class LetterCombinations {
     //电话按键的数字与字母的映射关系，2-9才有字母表示
-    static final String[] LETTER_MAP = {" ","*","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    private static final String[] LETTER_MAP = {" ","*","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
 
     public List<String> letterCombinations(String digits) {
         if(digits == null || digits.isEmpty()) {
@@ -37,17 +37,17 @@ public class LetterCombinations {
             ans.add(sb.toString());
             return;
         }
-        
         // 取出数字对应的字母字符串 
         String letters = LETTER_MAP[(digits.charAt(index)-'0')];
         // 得到字母的个数
         int lettersNum = letters.length();
-
         // 循环拼接字符串
         for(int i = 0; i < lettersNum; i++){
             sb.append(letters.charAt(i));
+            System.out.println(" 递归之前 => " + sb);
             dfs(digits, ans, index + 1, sb);
             sb.deleteCharAt(sb.length() - 1);
+            System.out.println(" 递归之后 => " + sb);
         }
     }
 
@@ -55,6 +55,6 @@ public class LetterCombinations {
         String digits = "234";
         LetterCombinations letterCombinations = new LetterCombinations();
         List<String> letterList = letterCombinations.letterCombinations(digits);
-        System.out.println(letterList);
+        System.out.println(" 输出 " + letterList);
     }
 }

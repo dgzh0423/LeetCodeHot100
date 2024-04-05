@@ -38,15 +38,20 @@ public class Permutation {
 
             tmp.add(nums[i]);
             isVisited[i] = true;
+            System.out.println(" 递归之前 => " + tmp);
 
             dfs(res, nums, tmp, isVisited);
+
             //回溯
             isVisited[i] = false;
             tmp.remove(tmp.size() - 1);
+            System.out.println(" 递归之后 => " + tmp);
         }
     }
 
     public static void main(String[] args) {
-
+        int[] nums = {1,2,3};
+        Permutation permutation = new Permutation();
+        System.out.println(" 输出 " + permutation.permute(nums));
     }
 }

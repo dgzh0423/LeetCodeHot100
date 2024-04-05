@@ -73,7 +73,9 @@ public class Solutions {
      */
     void quickSort(int[] nums, int left, int right) {
         // 子数组长度为 1 时终止递归
-        if (left >= right) return;
+        if (left >= right) {
+            return;
+        }
         // 哨兵划分
         int pivot = partition(nums, left, right);
         // 递归左子数组、右子数组
@@ -93,11 +95,13 @@ public class Solutions {
         int i = left, j = right;
         while (i < j) {
             // 从右向左找首个小于pivot的元素
-            while (i < j && nums[j] >= nums[left])
+            while (i < j && nums[j] >= nums[left]) {
                 j--;
+            }
             // 从左向右找首个大于pivot的元素
-            while (i < j && nums[i] <= nums[left])
+            while (i < j && nums[i] <= nums[left]) {
                 i++;
+            }
             swap(nums, i, j);
         }
         // 将pivot交换至两子数组的分界线
@@ -113,7 +117,9 @@ public class Solutions {
      * @param right
      */
     void mergeSort(int[] nums, int left, int right) {
-        if (left >= right) return;
+        if (left >= right) {
+            return;
+        }
         // 划分阶段：先通过递归不断地将数组从中点处分开，将长数组的排序问题转换为短数组的排序问题
         int mid = (left + right) / 2;
         mergeSort(nums, left, mid);
@@ -133,10 +139,11 @@ public class Solutions {
         int i = left, j = mid + 1, k = 0;
         // 当左右子数组都还有元素时，进行比较并将较小的元素复制到临时数组中
         while (i <= mid && j <= right) {
-            if (nums[i] <= nums[j])
+            if (nums[i] <= nums[j]) {
                 tmp[k++] = nums[i++];
-            else
+            } else {
                 tmp[k++] = nums[j++];
+            }
         }
         // 将左子数组和右子数组的剩余元素复制到临时数组中
         while (i <= mid) {
@@ -202,7 +209,9 @@ public class Solutions {
         // 3. 遍历 counter ，将各元素填回原数组 nums
         int index = 0;
         for (int i = 0; i < counter.length; i++) {
-            if (counter[i] == 0) continue;
+            if (counter[i] == 0) {
+                continue;
+            }
             for (int j = 0; j < counter[i]; j++) {
                 nums[index] = i;
                 index++;

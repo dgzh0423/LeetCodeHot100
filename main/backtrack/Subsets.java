@@ -17,15 +17,17 @@ public class Subsets {
         res.add(new ArrayList<>(tmp));
         for (int j = i; j < nums.length; j++) {
             tmp.add(nums[j]);
+            System.out.println(" 递归之前 => " + tmp);
             dfs(j + 1, nums, res, tmp);
             tmp.remove(tmp.size() - 1);
+            System.out.println(" 递归之后 => " + tmp);
         }
     }
 
     public static void main(String[] args) {
        int[] nums = {1, 2, 3};
        Subsets subsets = new Subsets();
-        List<List<Integer>> lists = subsets.subsets(nums);
-        System.out.println(lists);
+       List<List<Integer>> lists = subsets.subsets(nums);
+       System.out.println(" 输出 " + lists);
     }
 }

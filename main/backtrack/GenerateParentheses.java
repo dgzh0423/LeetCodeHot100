@@ -33,7 +33,7 @@ public class GenerateParentheses {
             res.add(path.toString());
             return;
         }
-        //剪枝：当剩余的左括号比剩余的右括号多时，
+        //剪枝：当剩余的左括号比剩余的右括号多时
         if (left > right){
             return;
         }

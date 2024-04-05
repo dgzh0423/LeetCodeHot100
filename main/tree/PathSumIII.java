@@ -35,11 +35,11 @@ public class PathSumIII {
         int res;
         // 如果前缀和在节点A和节点B处相差target，则位于节点A和节点B之间的元素之和是target
         res = prefixMap.getOrDefault(curSum - target, 0);
-        // 路径方向必须是向下的（只能从父节点到子节点），因此当我们把一个节点的前缀和信息更新到map里时，它应当只对其子节点们有效
         prefixMap.put(curSum, prefixMap.getOrDefault(curSum, 0) + 1);
         int left = recur(node.left, curSum);
         int right = recur(node.right, curSum);
 
+        // 路径方向必须是向下的（只能从父节点到子节点），因此当我们把一个节点的前缀和信息更新到map里时，它应当只对其子节点们有效
         // 在遍历完一个节点的所有子节点后，将其从map中除去
         prefixMap.put(curSum, prefixMap.get(curSum) - 1);
 
