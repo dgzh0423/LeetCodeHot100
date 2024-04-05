@@ -18,7 +18,7 @@ public class BinarySearchMatrix {
                 right = mid - 1;
             }
             // 找到目标元素
-            else {
+            else if (matrix[mid / n][ mid % n ] == target){
                 return true;
             }
         }

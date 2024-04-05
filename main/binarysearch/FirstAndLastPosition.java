@@ -15,10 +15,11 @@ public class FirstAndLastPosition {
                 left = mid + 1;
             } else if (nums[mid] > target) {
                 right = mid - 1;
-            } else {
+            } else if (nums[mid] == target){
                 right = mid - 1;
             }
         }
+        //当 target 存在时，返回的就是最左边的 target 的下标；当 target 不存在时，返回的就是首个大于 target 的元素下标
         return left;
     }
 

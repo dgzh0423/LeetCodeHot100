@@ -14,7 +14,7 @@ public class FindMinimumInRotation {
                 left = mid + 1;
             }
             // 中值 < 右值，最小值在左半边(包括中值)，收缩右边界
-            else {
+            else if (nums[mid] < nums[right]){
                 //中值也可能是最小值，故 right = mid 而不是 mid - 1
                 right = mid;
             }

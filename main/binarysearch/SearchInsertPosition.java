@@ -20,7 +20,7 @@ public class SearchInsertPosition {
                 j = mid - 1;
             }
             // 找到目标元素，返回其索引
-            else {
+            else if(nums[mid] == target) {
                 return mid;
             }
         }
@@ -31,18 +31,23 @@ public class SearchInsertPosition {
     /* 查找插入点本质上是在查找最左一个 target 的索引 */
     public int searchInsert(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
-        // 二分结束时一定有：left指向首个大于 target 的元素， right指向首个小于 target 的元素
+        // 如果target不存在：二分结束时，left指向首个大于 target 的元素， right指向首个小于 target 的元素
         while (left <= right) {
             int mid = left + (right - left) / 2;
             if (nums[mid] < target) {
                 left = mid + 1;
             } else if (nums[mid] > target) {
                 right = mid - 1;
-            } else {
-                right = mid - 1;
+            } else if (nums[mid] == target) {
+                // 这里找到target直接返回是因为nums元素不重复，即只有一个target
+                return mid;
+                // 如果nums里有多个target，想要找到最左边的target的下标，就不要立即返回，而是缩小右边界，继续往左找
+                // right = mid - 1;
+                // 同理，想要找到最右边的target的下标，就不要立即返回，而是缩小左边界，继续往右找，最后返回 right
+                // left = mid + 1；
             }
         }
-        // 未找到目标元素，返回它将会被按顺序插入的位置
+        // 未找到target，返回它将会被按顺序插入的位置
         return left;
     }
 
