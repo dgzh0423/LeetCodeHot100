@@ -9,6 +9,7 @@ import java.util.Random;
 public class KthLargest {
     public int findKthLargest(int[] nums, int k) {
         PriorityQueue<Integer> heap = new PriorityQueue<>();
+        // 第 k 大的数字 等价于 第 N-k+1 小的数字
         for (int num : nums) {
             heap.add(num);
             if (heap.size() > k) {
@@ -35,7 +36,6 @@ public class KthLargest {
                 right = pivotIndex - 1;
             }
         }
-
     }
 
     private int partition(int[] nums, int left, int right) {
@@ -44,7 +44,7 @@ public class KthLargest {
         swap(nums, left, randomIndex);
         int pivot = nums[left];
         int le = left + 1, ge = right;
-        // 使 nums[left + 1..le) <= pivot;  nums(ge..right] >= pivot;
+        // 使 nums[left..le) <= pivot;  nums(ge..right] >= pivot;
         while (true) {
             while (le <= ge && nums[le] < pivot) {
                 le++;
@@ -69,7 +69,6 @@ public class KthLargest {
         nums[i] = nums[j];
         nums[j] = tmp;
     }
-
 
     public static void main(String[] args) {
         KthLargest kth = new KthLargest();

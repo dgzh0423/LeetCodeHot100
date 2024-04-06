@@ -10,7 +10,7 @@ public class DailyTemperatures {
     public int[] dailyTemperatures(int[] temperatures) {
         int length = temperatures.length;
         int[] res = new int[length];
-        //从后面开始查找
+        // ⭐从后面开始查找⭐
         // res[temperatures.length - 1] = 0 因为是最后一天
         for (int i = length - 2; i >= 0; i--) {
             int j = i + 1;
@@ -24,8 +24,8 @@ public class DailyTemperatures {
                     res[i] = 0;
                     break;
                 } else {
-                    //如果没找到，并且res[j]！= 0说明第j个元素后面有比第j个元素大的值，
-                    //然后我们让j跳到那个值，再和第i个元素比较
+                    //如果没找到，并且res[j] != 0说明第j个元素后面有比第j个元素大的值，
+                    //然后我们让j跳到那个值，再和第i个温度值比较
                     j += res[j];
                 }
             }

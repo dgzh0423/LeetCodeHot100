@@ -17,7 +17,7 @@ public class DecodeString {
                 numStack.addLast(multi);
                 resStack.addLast(res.toString());
                 multi = 0;
-                res = new StringBuilder();
+                res.setLength(0);
             }
             else if(c == ']') {
                 StringBuilder tmp = new StringBuilder();
@@ -39,7 +39,7 @@ public class DecodeString {
     }
     public static void main(String[] args) {
         DecodeString decodeString = new DecodeString();
-        String s = "3[ab2[c]]";
+        String s = "3[ab2[c]]d";
         System.out.println(decodeString.decodeString(s));
     }
 }

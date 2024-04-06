@@ -41,7 +41,6 @@ public class TopKFrequent {
         // 统计每个数字出现的次数
         Map<Integer, Integer> counterMap = IntStream.of(nums).boxed().collect(Collectors.toMap(e -> e, e -> 1, Integer::sum));
         // 一个数字最多出现 nums.length 次，因此定义一个长度为 nums.length + 1 的数组
-        // 若 k 很小，且 nums 中元素的 freq 很大
         List<List<Integer>> freqList = new ArrayList<>(nums.length + 1);
         // 若 nums 中不同元素的 freq 相等或近似，就会创建很多无用的空List
         for (int i = 0; i < nums.length + 1; i++) {

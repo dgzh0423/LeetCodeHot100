@@ -23,7 +23,7 @@ public class FirstMissPositive {
         //如果nums正好保存了1到n, 则结果为 n+1
         return n + 1;
     }
-    public static void swap(int[] nums, int index1, int index2) {
+    private static void swap(int[] nums, int index1, int index2) {
         // 互换位置
         int temp = nums[index1];
         nums[index1] = nums[index2];

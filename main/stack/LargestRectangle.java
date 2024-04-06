@@ -22,9 +22,10 @@ public class LargestRectangle {
             // 因此以栈顶柱体为高的矩形的左右宽度边界就确定了，可以计算面积
             while (!stack.isEmpty() && tmp[i] < tmp[stack.peek()]) {
                 int height = tmp[stack.pop()];
-                int width = stack.isEmpty() ? i : (i - stack.peek() - 1);
+                int width = i - stack.peek() - 1;
                 area = Math.max(area, width * height);
             }
+            // addFirst()
             stack.push(i);
         }
         //遍历完成后stack里只剩下两个哨兵的下标
