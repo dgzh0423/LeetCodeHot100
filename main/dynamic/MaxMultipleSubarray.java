@@ -31,9 +31,10 @@ public class MaxMultipleSubarray {
         }
 
         int res = maxDp[0];
-        for (int i = 1; i < len; i++) {
+        for (int i = 1; i < len; i++){
             res = Math.max(res, maxDp[i]);
         }
+        // 返回 maxDp[]的最大值
         return res;
     }
 

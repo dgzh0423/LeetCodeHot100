@@ -25,7 +25,15 @@ public class PartitionEqualSubsetSum {
             dp[0][nums[0]] = true;
         }
         for (int i = 1; i < len; i++) {
+            // 若 nums[] 中存在 nums[i] > target, 则不可能分成两个和相等的子集
+            if(nums[i] > target){
+                return false;
+            }
+
             for (int j = 0; j <= target; j++) {
+                // 直接从上一行先把结果抄下来，然后再修正
+                dp[i][j] = dp[i - 1][j];
+
                 if (nums[i] == j) {
                     dp[i][j] = true;
                     continue;
@@ -39,9 +47,39 @@ public class PartitionEqualSubsetSum {
         }
         return dp[len - 1][target];
     }
+
+    /**
+     * 0-1背包问题 <a href="https://www.hello-algo.com/chapter_dynamic_programming/knapsack_problem/">...</a>
+     */
+    public boolean canPartitionPlus(int[] nums) {
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        if ((sum & 1) == 1) {
+            return false;
+        }
+
+        int target = sum / 2;
+        int[] dp = new int[target + 1];
+
+        // 对于每个物品num， 它的重量是num， 价值也是num
+        for (int num : nums) {
+            // 倒序
+            for (int j = target; j >= num; j--) {
+                dp[j] = Math.max(dp[j], dp[j - num] + num);
+            }
+            if (dp[target] == target) {
+                return true;
+            }
+        }
+        return dp[target] == target;
+    }
+
     public static void main(String[] args) {
         PartitionEqualSubsetSum partition = new PartitionEqualSubsetSum();
-        int[] nums = {20,2,2,2};
+        int[] nums = {1,5,10,6};
         System.out.println(partition.canPartition(nums));
+        System.out.println(partition.canPartitionPlus(nums));
     }
 }

@@ -28,7 +28,8 @@ public class PerfectSquares {
     }
 
     // 这里的 static 为了保存 1~n 的计算结果，方便后续直接取用
-    static ArrayList<Integer> dp = new ArrayList<>();
+    private static ArrayList<Integer> dp = new ArrayList<>();
+
     public int numSquaresDynamic(int n) {
         // 第一次进入将 0 加入
         if(dp.isEmpty()){

@@ -1,5 +1,6 @@
 package main.dynamic;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,8 +10,9 @@ import java.util.List;
 public class WordBreak {
     HashMap<String, Boolean> map = new HashMap<>();
     public boolean wordBreak(String s, List<String> wordDict) {
+        // dp[i]表示s前i个字符能否拆分
         boolean[] dp = new boolean[s.length() + 1];
-        //方便check，构建一个哈希表
+        // 方便check，构建一个哈希表
         for(String word : wordDict){
             map.put(word, true);
         }
@@ -33,7 +35,10 @@ public class WordBreak {
     }
 
     public static void main(String[] args) {
-
+        WordBreak wb = new WordBreak();
+        String s = "applepenapple";
+        List<String> wordDict = Arrays.asList("apple", "pen");
+        System.out.println(wb.wordBreak(s, wordDict));
     }
 }
 

@@ -10,7 +10,7 @@ package main.dynamic;
  */
 public class ClimbStairs {
     public int climbStairsDynamic(int n) {
-        // dp[n] = dp[n−1] + dp[n−2]，n ≥ 1， n为正整数
+        // dp[n] = dp[n−1] + dp[n−2]，n ≥ 3， n为正整数
         int[] dp = new int[n + 1];
         dp[1] = 1;
         dp[2] = 2;
@@ -26,11 +26,11 @@ public class ClimbStairs {
             return n;
         }
         // 由于 dp[n] 只与 dp[n−1] 和 dp[n−2]有关，因此我们无须使用一个数组 dp 来存储所有子问题的解，而只需两个变量 "滚动" 前进即可
-        int a = 1, b = 2;
+        int a = 1, b = 2, sum;
         for (int i = 3; i <= n; i++) {
-            int tmp = b;
-            b = a + b;
-            a = tmp;
+            sum = a + b;
+            a = b;
+            b = sum;
         }
         return b;
     }
