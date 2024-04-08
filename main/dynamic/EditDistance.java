@@ -24,6 +24,7 @@ public class EditDistance {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else {
                     // dp[i - 1][j - 1] 表示替换操作，dp[i-1][j] 表示删除操作，dp[i][j-1] 表示插入操作。
+                    // https://leetcode.cn/problems/edit-di0stance/solutions/188814/dong-tai-gui-hua-java-by-liweiwei1419/?envType=study-plan-v2&envId=top-100-liked
                     dp[i][j] = Math.min(Math.min(dp[i - 1][j - 1], dp[i - 1][j]), dp[i][j-1]) + 1;
                 }
             }
@@ -32,8 +33,8 @@ public class EditDistance {
     }
     public static void main(String[] args) {
         EditDistance min = new EditDistance();
-        String word1 = "";
-        String word2 = "";
+        String word1 = "intention";
+        String word2 = "execution";
         System.out.println(min.minDistance(word1, word2));
     }
 }

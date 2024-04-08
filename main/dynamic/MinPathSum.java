@@ -30,6 +30,7 @@ public class MinPathSum {
         int m = grid.length, n = grid[0].length;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
+                // 左上角起始点直接跳过
                 if (i == 0 && j == 0){
                     continue;
                 }
