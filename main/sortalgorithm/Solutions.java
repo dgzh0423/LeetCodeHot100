@@ -11,7 +11,8 @@ import java.util.List;
 public class Solutions {
 
     /**
-     * 选择排序：开启一个循环，每轮从未排序区间选择 "最小的元素"，将其放到已排序区间的末尾。
+     * 选择排序：开启一个循环，每轮从未排序区间选择 "最小的元素"，将其放到已排序区间的末尾
+     * 特点： 时间复杂度 O(n²) 空间复杂度 O(1) 不稳定排序
      */
     void selectionSort(int[] nums) {
         int n = nums.length;
@@ -31,23 +32,31 @@ public class Solutions {
     }
 
     /**
-     * 冒泡排序：从数组最左端开始向右遍历，依次比较相邻元素大小，如果“左元素 > 右元素”就交换二者。遍历完成后，最大的元素会被移动到数组的最右端。
+     * 冒泡排序：从数组最左端开始向右遍历，依次比较相邻元素大小，如果“左元素 > 右元素”就交换二者。遍历完成后，最大的元素会被移动到数组的最右端
+     * 特点：时间复杂度 O(n²) 空间复杂度 O(1) 稳定排序
      */
     void bubbleSort(int[] nums) {
         // 外循环：未排序区间为 [0, i]
         for (int i = nums.length - 1; i > 0; i--) {
+            boolean flag = false;
             // 内循环：将未排序区间 [0, i] 中的最大元素交换至该区间的最右端
             for (int j = 0; j < i; j++) {
                 if (nums[j] > nums[j + 1]) {
                     // 交换 nums[j] 与 nums[j + 1]
                     swap(nums, j ,j + 1);
+                    flag = true;
                 }
+            }
+            // 如果某轮“冒泡”中没有执行任何交换操作，说明数组已经完成排序，可直接返回结果
+            if (!flag){
+                break;
             }
         }
     }
 
     /**
-     * 插入排序：每轮选取未排序区间的首个元素为pivot，将pivot与排好序区间的元素比较，找到合适的位置，再插入。
+     * 插入排序：每轮选取未排序区间的首个元素为pivot，将pivot与排好序区间的元素比较，找到合适的位置，再插入
+     * 特点：时间复杂度 O(n²) 空间复杂度 O(1) 稳定排序，适合数据量很小的情况
      */
     void insertionSort(int[] nums) {
         // 外循环：初始默认nums[0]已排好序，pivot从num[1]开始
@@ -64,19 +73,46 @@ public class Solutions {
         }
     }
 
+    /**
+     * 希尔排序: 通过将相距一定步长的元素进行分组，对每个分组进行插入排序，然后逐步缩小步长直到1，最终完成整个数组的排序
+     * 特点：时间复杂度 O[n(logn)²] 空间复杂度 O(1) 不稳定排序
+     */
+    public void shellSort(int[] nums) {
+        int n = nums.length;
+        // 初始步长为数组长度的一半
+        int gap = n / 2;
+        // 进行分组插入排序，直到步长为1（最后一轮的插入排序）
+        while (gap > 0) {
+            // 从步长位置开始遍历数组
+            for (int i = gap; i < n; i++) {
+                // 记录当前待插入的值
+                int temp = nums[i];
+                int j = i;
+                // 对当前分组进行插入排序
+                while (j >= gap && nums[j - gap] > temp) {
+                    // 如果前一个元素大于当前元素，则将前一个元素后移
+                    nums[j] = nums[j - gap];
+                    j -= gap;
+                }
+                // 找到插入位置后，将待插入的值放入该位置
+                nums[j] = temp;
+            }
+            // 缩小步长
+            gap /= 2;
+        }
+    }
 
     /**
      * 快速排序：核心是 哨兵划分 和 递归分治
-     * @param nums
-     * @param left
-     * @param right
+     * 特点：时间复杂度 O(nlogn) 空间复杂度 O(n) 不稳定排序
+     * 哨兵的选择会影响算法效率：可以在数组中选取三个候选元素（通常为数组的首、尾、中点元素），并将这三个候选元素的中位数作为基准数
      */
     void quickSort(int[] nums, int left, int right) {
         // 子数组长度为 1 时终止递归
         if (left >= right) {
             return;
         }
-        // 哨兵划分
+        // 哨兵划分，实质是将一个较长数组的排序问题简化为两个较短数组的排序问题
         int pivot = partition(nums, left, right);
         // 递归左子数组、右子数组
         quickSort(nums, left, pivot - 1);
@@ -84,11 +120,7 @@ public class Solutions {
     }
 
     /**
-     * 哨兵划分：选择数组中的某个元素作为“基准数”，将所有小于基准数的元素移到其左侧，而大于基准数的元素移到其右侧。
-     * @param nums
-     * @param left
-     * @param right
-     * @return
+     * 哨兵划分：选择数组中的某个元素作为“基准数”，将所有小于基准数的元素移到其左侧，而大于基准数的元素移到其右侧
      */
     int partition(int[] nums, int left, int right) {
         // 以 nums[left] 为 pivot
@@ -111,10 +143,8 @@ public class Solutions {
     }
 
     /**
-     * 归并排序
-     * @param nums
-     * @param left
-     * @param right
+     * 归并排序：先划分，再合并
+     * 特点：时间复杂度 O(nlogn) 空间复杂度 O(n) 稳定排序
      */
     void mergeSort(int[] nums, int left, int right) {
         if (left >= right) {
@@ -159,9 +189,8 @@ public class Solutions {
     }
 
     /**
-     * 桶排序：先通过设置一些具有大小顺序的桶，每个桶对应一个数据范围，将数据平均分配到各个桶中；然后，在每个桶内部分别执行排序；最终按照桶的顺序将所有数据合并。
-     * @param nums
-     * @param numberOfBuckets
+     * 桶排序：先通过设置一些具有大小顺序的桶，每个桶对应一个数据范围，将数据平均分配到各个桶中；然后，在每个桶内部分别执行排序；最后按照桶的顺序将所有数据合并
+     * 特点：时间复杂度 O(n + k) 空间复杂度 O(n + k) 稳定性取决于排序桶内元素的算法是否稳定
      */
     public void bucketSort(int[] nums, int numberOfBuckets){
         if (numberOfBuckets <= 0){
@@ -183,7 +212,7 @@ public class Solutions {
             buckets.add(new ArrayList<>());
         }
         for (int num: nums){
-            // !! nums里的元素必须小于 numberOfBuckets的平方，否则就会超出buckets的下标范围[0, numberOfBuckets - 1] !!
+            // nums里的元素必须小于 numberOfBuckets的平方，否则就会超出buckets的下标范围[0, numberOfBuckets - 1]
             buckets.get(num / numberOfBuckets).add(num);
         }
         return buckets;
@@ -192,10 +221,10 @@ public class Solutions {
 
     /**
      * 计数排序
-     * @param nums
+     * 特点：时间复杂度 O(n + k) 空间复杂度 O(K) 稳定排序
      */
     void countingSort(int[] nums) {
-        // 1. 统计数组最大元素 max
+        // 1. 找到数组最大元素记为 max
         int max = 0;
         for (int num : nums) {
             max = Math.max(max, num);
@@ -224,9 +253,11 @@ public class Solutions {
         nums[i] = nums[j];
         nums[j] = temp;
     }
+
     public static void main(String[] args) {
         Solutions solutions = new Solutions();
         int[] nums = {4,1,3,1,5,2};
+        solutions.shellSort(nums);
         solutions.quickSort(nums, 0, nums.length - 1);
         solutions.mergeSort(nums, 0, nums.length - 1);
         solutions.insertionSort(nums);

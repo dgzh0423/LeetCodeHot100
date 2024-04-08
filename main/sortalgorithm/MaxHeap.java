@@ -13,7 +13,9 @@ public class MaxHeap {
     // 使用列表而非数组，这样无须考虑扩容问题
     private List<Integer> maxHeap;
 
-    /* 构造方法，根据输入列表建堆 */
+    /**
+     * 构造方法，根据输入列表建堆
+     */
     public MaxHeap(List<Integer> nums) {
         // 将列表元素原封不动添加进堆
         maxHeap = new ArrayList<>(nums);
@@ -87,9 +89,9 @@ public class MaxHeap {
         if (isEmpty()) {
             throw new IndexOutOfBoundsException();
         }
-        // 1. 交换根节点与最右叶节点（交换首元素与尾元素）
+        // 1. 交换堆顶节点与最右叶节点（交换首元素与尾元素）
         swap(0, size() - 1);
-        // 2. 删除节点
+        // 2. 删除"堆顶节点"
         int val = maxHeap.remove(size() - 1);
         // 3. 从顶至底堆化
         siftDown(0);
@@ -134,10 +136,12 @@ public class MaxHeap {
             i = max;
         }
     }
+
     public static void main(String[] args) {
         MaxHeap maxHeap = new MaxHeap(Arrays.asList(9, 8, 6, 6, 7, 5, 2, 1, 4, 3, 6, 2));
         System.out.println(maxHeap.heapSort(maxHeap));
-
+        maxHeap.push(10);
+        System.out.println(maxHeap.peek());
     }
 }
 
