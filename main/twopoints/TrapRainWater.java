@@ -11,8 +11,8 @@ public class TrapRainWater {
            思路：按列求--当前列的高度，左边最高列的高度，右边最高列的高度
            时间复杂度 O(n^2)  空间复杂度 O(1）
 
-           优化：max_left[i] = Max(max_left [i-1],height[i-1])
-                max_right[i] = Max(max_right[i+1],height[i+1])
+           优化：max_left[i] = Max(max_left[i-1], height[i-1]) 从左往右遍历
+                max_right[i] = Max(max_right[i+1], height[i+1]) 从右往左遍历
            时间复杂度为 O(n)  空间复杂度 O(n）
          */
 
@@ -49,9 +49,9 @@ public class TrapRainWater {
 
     /*
         假设两柱子分别为 i，j，那么就有 iLeftMax,iRightMax,jLeftMax,jRightMax 这四个变量
-        由于 j > i ，故 jLeftMax >= iLeftMax，iRightMax >= jRightMax.
-        当 iLeftMax < jRightMax 的话，必有 iLeftMax < iRightMax 只需要判断 iLeftMax 是否比 i 高
-        当 iLeftMax >= jRightMax 的话，必有 jLeftMax >= jRightMax 只需要判断 jRightMax 是否比 j 高
+        由于 i < j ，故 iLeftMax ≤ jLeftMax，iRightMax ≥ jRightMax.
+        当 height[i-1] < height[j+1]，可推得 iLeftMax < jRightMax，必有 iLeftMax < iRightMax 只需要判断 iLeftMax 是否比 i 高
+        反之，当 iLeftMax ≥ jRightMax，必有 jRightMax ≤ jLeftMax 只需要判断 jRightMax 是否比 j 高
         时间复杂度为 O(n)  空间复杂度 O(1）
      */
     public static int trapWithTwoPoints(int[] height){
@@ -63,13 +63,15 @@ public class TrapRainWater {
         for (int k = 1; k < len - 1 ; k++) {
             //看柱子i
             if (height[i-1] < height[j+1]){
-                iLeftMax = Math.max(iLeftMax , height[i-1]);
+                iLeftMax = Math.max(iLeftMax, height[i-1]);
                 if (iLeftMax > height[i]) {
                     res += iLeftMax - height[i];
                 }
                 i++;
-            }else {//看柱子j
-                jRightMax = Math.max(jRightMax,height[j+1]);
+            }
+            //看柱子j
+            else {
+                jRightMax = Math.max(jRightMax, height[j+1]);
                 if (jRightMax > height[j]){
                     res += jRightMax - height[j];
                 }
