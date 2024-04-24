@@ -28,10 +28,12 @@ public class InorderTraversal {
         if(root==null) {
             return;
         }
-        //按照 左-中-右的方式遍历
+        //前序位置
         dfs(res,root.left);
+        //中序位置
         res.add(root.val);
         dfs(res,root.right);
+        //后序位置
     }
 
     /**
