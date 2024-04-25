@@ -9,9 +9,8 @@ import java.util.List;
 public class Permutation {
 
     /**
-     * nums里元素不重复，每个全排列包含nums的所有元素
-     * @param nums
-     * @return
+     * @param nums 元素无重不可复选，每个全排列包含nums的所有元素
+     * @return res
      */
     public List<List<Integer>> permute(int[] nums) {
 

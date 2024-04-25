@@ -10,10 +10,9 @@ import java.util.List;
 public class CombinationSum {
 
     /**
-     * candidates里的元素都不重复，但可以重复使用。 子集里的元素不区分顺序，比如 {4,5} 和 {5,4} 是同一个子集。
-     * @param candidates
-     * @param target
-     * @return
+     * @param candidates 元素无重可复选。 子集里的元素不区分顺序，比如 {4,5} 和 {5,4} 是同一个子集。
+     * @param target 目标和
+     * @return res
      */
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         // 对 candidates 进行排序 为了方便后续子集和超过 target时 ，能直接结束循环
