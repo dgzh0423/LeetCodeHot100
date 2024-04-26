@@ -47,8 +47,46 @@ public class MinWindowSubstring {
         return min == Integer.MAX_VALUE ? "" : s.substring(start, start + min);
     }
 
+    /**
+     * 判断 s2 是否包含 s1 的排列
+     * @param s1 1 <= s1.length, s2.length <= 10^4
+     * @param s2 1 <= s1.length, s2.length <= 10^4
+     * @return true/false
+     */
+    public static boolean checkInclusion(String s1, String s2) {
+        int length1 = s1.length(), length2 = s2.length();
+        if (length2 < length1){
+            return false;
+        }
+        // s1 和 s2 仅包含小写字母
+        int[] s1count = new int[26];
+        // 记录s1中出现的字母和出现次数
+        for (int i = 0; i < s1.length(); i++) {
+            s1count[s1.charAt(i) - 'a']++;
+        }
+        // l,r窗口左右边界
+        int l = 0, r = 0;
+        while (l <= length2 -length1){
+            //固定 l，让 r 向右探测
+            while (r < l + length1 && s1count[s2.charAt(r) - 'a'] > 0){
+                s1count[s2.charAt(r) - 'a']--;
+                r++;
+            }
+            // 当s2[l,r] 包含s1时，返回true
+            if (r == l + length1){
+                return true;
+            }
+            //窗口不符合条件(有其他字符，或者字符个数不对)，左边界右移
+            s1count[s2.charAt(l) - 'a']++;
+            l++;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         String s = "ADOBECODEBANC", t = "ABC";
         System.out.println(minWindow(s, t));
+        String s1 = "ab", s2 = "eidbaooo";
+        System.out.println(checkInclusion(s1, s2));
     }
 }
