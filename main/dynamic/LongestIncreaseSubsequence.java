@@ -6,7 +6,7 @@ import java.util.Arrays;
  * @author 15304
  */
 public class LongestIncreaseSubsequence {
-    public int lengthOfLIS(int[] nums) {
+    public static int lengthOfLIS(int[] nums) {
         if(nums.length == 0) {
             return 0;
         }
@@ -18,7 +18,7 @@ public class LongestIncreaseSubsequence {
         for(int i = 0; i < nums.length; i++) {
             for(int j = 0; j < i; j++) {
                 // 严格递增 nums[i] 才可以接在 nums[j] 之后
-                if(nums[j] < nums[i]) {
+                if(nums[i] > nums[j]) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
             }
@@ -45,7 +45,8 @@ public class LongestIncreaseSubsequence {
                 int mid = (left + right) / 2;
                 if(tails[mid] < num) {
                     left = mid + 1;
-                } else {
+                }
+                else if (tails[mid] >= num){
                     right = mid;
                 }
             }
@@ -63,7 +64,7 @@ public class LongestIncreaseSubsequence {
     public static void main(String[] args) {
         LongestIncreaseSubsequence longest = new LongestIncreaseSubsequence();
         int[] nums = {10,9,2,5,3,7,101,18};
-        System.out.println(longest.lengthOfLIS(nums));
+        System.out.println(lengthOfLIS(nums));
         System.out.println(longest.lengthOfLISPlus(nums));
     }
 }
