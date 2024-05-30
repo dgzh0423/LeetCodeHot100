@@ -49,39 +49,71 @@ public class LongestPalindromicSubstring {
         return s.substring(begin, begin + maxLen);
     }
 
+    /**
+     * 双指针中心扩散法找字符串的最长回文子串
+     * @param s 字符串
+     * @return 最长回文子串
+     */
     public String longestPalindromeByCenterSpread(String s) {
         int len = s.length();
         if (len < 2) {
             return s;
         }
-
-        char[] ch = s.toCharArray();
-        int max = 0;
-        int begin = 0;
-        for (int i = 0; i < len - 1; i++) {
-            int odd = maxLen(ch, i, i);
-            int even = maxLen(ch, i, i + 1);
-            if (Math.max(odd, even) > max) {
-                max = Math.max(odd, even);
-                begin = i - (max - 1) / 2;
-            }
+        String res = "";
+        for (int i = 0; i < s.length(); i++) {
+            // 以 s[i] 为中心的最长回文子串
+            String s1 = palindrome(s, i, i);
+            // 以 s[i] 和 s[i+1] 为中心的最长回文子串
+            String s2 = palindrome(s, i, i + 1);
+            // res = longest(res, s1, s2)
+            // 这里的 > 是考虑有多个最长回文子串是，会选择更靠后的
+            res = res.length() > s1.length() ? res : s1;
+            res = res.length() > s2.length() ? res : s2;
         }
-        return s.substring(begin, begin + max);
+        return res;
     }
 
-    // 利用中心扩散法找最长回文长度
-    private int maxLen (char[] ch, int left, int right) {
-        while (left >= 0 && right < ch.length && ch[left] == ch[right]) {
-            left--;
-            right++;
+    /**
+     * @param s 字符串
+     * @param l 中心下标 l = r，找的是奇数长度的最长回文子串
+     * @param r 中心下标 r = l + 1，找的是偶数长度的最长回文子串
+     * @return 以 s[l] 和 s[r] 为中心的最长回文串
+     */
+    String palindrome(String s, int l, int r) {
+        // 防止索引越界
+        while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+            // 双指针，向两边展开
+            l--;
+            r++;
         }
-        return (right - 1) - (left + 1) + 1;
+        // 返回结果，substring左闭右开
+        return s.substring(l + 1, r);
+    }
+
+    /**
+     * 双指针法判断是否是回文串
+     * @param s 字符串
+     * @return true/false
+     */
+    boolean isPalindrome(String s) {
+        // 一左一右两个指针相向而行
+        int left = 0, right = s.length() - 1;
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
     }
 
     public static void main(String[] args) {
         LongestPalindromicSubstring longest = new LongestPalindromicSubstring();
+        // bab 或 aba 都符合题意
         String s = "baba";
         System.out.println(longest.longestPalindrome(s));
         System.out.println(longest.longestPalindromeByCenterSpread(s));
+        System.out.println(longest.isPalindrome(s));
     }
 }
