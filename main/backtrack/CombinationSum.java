@@ -1,7 +1,6 @@
 package main.backtrack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -9,41 +8,47 @@ import java.util.List;
  */
 public class CombinationSum {
 
+    List<List<Integer>> res = new LinkedList<>();
+    // 记录回溯的路径
+    LinkedList<Integer> track = new LinkedList<>();
+    // 记录 track 中的路径和
+    int trackSum = 0;
+
     /**
      * @param candidates 元素无重可复选。 子集里的元素不区分顺序，比如 {4,5} 和 {5,4} 是同一个子集。
      * @param target 目标和
      * @return res
      */
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        // 对 candidates 进行排序 为了方便后续子集和超过 target时 ，能直接结束循环
-        Arrays.sort(candidates);
-
-        int start = 0;
-        List<List<Integer>> res = new ArrayList<>();
-        List<Integer> path = new ArrayList<>();
-        backtrack(path, target, candidates, start, res);
+        if (candidates.length == 0) {
+            return res;
+        }
+        backtrack(candidates, 0, target);
         return res;
     }
 
-    private void backtrack(List<Integer> path, int target, int[] candidates, int start, List<List<Integer>> res) {
-        // 子集和等于 target 时，保存path
-        if (target == 0) {
-            res.add(new ArrayList<>(path));
+    // 回溯算法主函数
+    void backtrack(int[] nums, int start, int target) {
+        // base case，找到目标和，记录结果
+        if (trackSum == target) {
+            res.add(new LinkedList<>(track));
             return;
         }
-        // 从 start 开始遍历，避免生成重复子集
-        for (int i = start; i < candidates.length; i++) {
-            // 当子集和超过 target ，则直接结束循环
-            if (target - candidates[i] < 0) {
-                break;
-            }
-            path.add(candidates[i]);
-            System.out.println(" 递归之前 => " + path);
-            // 进行下一轮选择
-            backtrack(path, target - candidates[i], candidates, i, res);
-            // 回退：撤销选择，恢复到之前的状态
-            path.remove(path.size() - 1);
-            System.out.println(" 递归之后 => " + path);
+        // base case，超过目标和，停止向下遍历
+        if (trackSum > target) {
+            return;
+        }
+
+        // 回溯算法标准框架
+        for (int i = start; i < nums.length; i++) {
+            // 选择 nums[i]
+            trackSum += nums[i];
+            track.add(nums[i]);
+            // 递归遍历下一层回溯树，start = i 表示同一元素可重复使用
+            backtrack(nums, i, target);
+            // 撤销选择 nums[i]
+            trackSum -= nums[i];
+            track.removeLast();
         }
     }
 
