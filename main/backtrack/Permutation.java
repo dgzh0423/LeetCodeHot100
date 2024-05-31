@@ -1,6 +1,6 @@
 package main.backtrack;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -8,43 +8,44 @@ import java.util.List;
  */
 public class Permutation {
 
+    List<List<Integer>> res = new LinkedList<>();
+    // 记录回溯算法的递归路径
+    LinkedList<Integer> track = new LinkedList<>();
+    // track 中的元素会被标记为 true
+    boolean[] used;
+
     /**
      * @param nums 元素无重不可复选，每个全排列包含nums的所有元素
      * @return res
      */
     public List<List<Integer>> permute(int[] nums) {
-
-        List<List<Integer>> res = new ArrayList<>();
-        if (nums.length == 0) {
-            return res;
-        }
-        boolean[] isVisited = new boolean[nums.length];
-        dfs(res, nums, new ArrayList<>(), isVisited);
+        used = new boolean[nums.length];
+        backtrack(nums);
         return res;
     }
 
-    private void dfs(List<List<Integer>> res, int[] nums, ArrayList<Integer> tmp, boolean[] isVisited) {
-        // 当所有数字都在排列中了，终止递归
-        if (tmp.size() == nums.length) {
-            res.add(new ArrayList<>(tmp));
+    // 回溯算法核心函数
+    private void backtrack(int[] nums) {
+        // base case，到达叶子节点
+        if (track.size() == nums.length) {
+            // 收集叶子节点上的值
+            res.add(new LinkedList<>(track));
             return;
         }
-        //在还未选择的数中依次选择一个加入排列tmp
+        // 回溯算法标准框架
         for (int i = 0; i < nums.length; i++) {
-            if (isVisited[i]) {
+            // 已经存在 track 中的元素，不能重复选择
+            if (used[i]) {
                 continue;
             }
-
-            tmp.add(nums[i]);
-            isVisited[i] = true;
-            System.out.println(" 递归之前 => " + tmp);
-
-            dfs(res, nums, tmp, isVisited);
-
-            //回溯
-            isVisited[i] = false;
-            tmp.remove(tmp.size() - 1);
-            System.out.println(" 递归之后 => " + tmp);
+            // 做选择
+            used[i] = true;
+            track.addLast(nums[i]);
+            // 进入下一层回溯树
+            backtrack(nums);
+            // 取消选择
+            track.removeLast();
+            used[i] = false;
         }
     }
 
