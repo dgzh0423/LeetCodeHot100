@@ -48,7 +48,7 @@ public class MinWindowSubstring {
     }
 
     /**
-     * 判断 s2 是否包含 s1 的排列
+     * 判断 s2 是否包含 s1 的排列 等价于 s2 中是否存在一个子串，包含 s1 中所有字符且不包含其他字符？
      * @param s1 1 <= s1.length, s2.length <= 10^4
      * @param s2 1 <= s1.length, s2.length <= 10^4
      * @return true/false

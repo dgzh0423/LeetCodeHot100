@@ -4,10 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 滑动窗口
  * @author 15304
  */
 public class LongestSubstring {
+
+    /**
+     * 给定一个字符串，请你找出其中不含有重复字符的最长子串的长度
+     * @param s 给定一个字符串
+     * @return lengthOfLongestSubstring
+     */
     public static int lengthOfLongestSubstring(String s) {
         int res = 0;
         // key为字符, value为字符的index
@@ -26,6 +31,7 @@ public class LongestSubstring {
         }
         return res;
     }
+
     public static void main(String[] args) {
         String s = "abcabcbb";
         System.out.println(lengthOfLongestSubstring(s));

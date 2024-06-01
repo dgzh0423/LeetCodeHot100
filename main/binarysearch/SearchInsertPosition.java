@@ -4,7 +4,13 @@ package main.binarysearch;
  * @author 15304
  */
 public class SearchInsertPosition {
-    /* 二分查找（双闭区间）模板 */
+
+    /**
+     * 二分查找（双闭区间）模板
+     * @param nums 元素无重且升序
+     * @param target 目标元素
+     * @return 目标元素下标，不存在则返回 -1
+     */
     int binarySearch(int[] nums, int target) {
         int i = 0, j = nums.length - 1;
         // 循环，当搜索区间为空时跳出（当 i > j 时为空）
@@ -28,7 +34,12 @@ public class SearchInsertPosition {
         return -1;
     }
 
-    /* 查找插入点本质上是在查找最左一个 target 的索引 */
+    /**
+     * 查找插入点本质上是在查找最左一个 target 的索引
+     * @param nums 元素可重，非递减
+     * @param target 目标元素
+     * @return 目标元素最左下标，不存在则返回首个大于 target 的元素下标
+     */
     public int searchInsert(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
         // 如果target不存在：二分结束时，left指向首个大于 target 的元素， right指向首个小于 target 的元素
@@ -39,11 +50,11 @@ public class SearchInsertPosition {
             } else if (nums[mid] > target) {
                 right = mid - 1;
             } else if (nums[mid] == target) {
-                // 这里找到target直接返回是因为nums元素不重复，即只有一个target
+                // 这里找到target直接返回的条件是nums元素不重复，即只有一个target
                 return mid;
                 // 如果nums里有多个target，想要找到最左边的target的下标，就不要立即返回，而是缩小右边界，继续往左找
                 // right = mid - 1;
-                // 同理，想要找到最右边的target的下标，就不要立即返回，而是缩小左边界，继续往右找，最后返回 right
+                // 同理，想要找到最右边的target的下标，就不要立即返回，而是缩小左边界，继续往右找
                 // left = mid + 1；
             }
         }
