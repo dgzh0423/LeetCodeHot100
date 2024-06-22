@@ -1,7 +1,7 @@
 package main.graph;
 
 /**
- * 实现前缀树：
+ * 208.实现前缀树
  * @author 15304
  */
 public class Trie {
@@ -48,6 +48,12 @@ public class Trie {
     }
 
     public static void main(String[] args) {
-
+        Trie trie = new Trie();
+        trie.insert("apple");
+        System.out.println(trie.search("apple"));
+        System.out.println(trie.search("app"));
+        System.out.println(trie.startsWith("app"));
+        trie.insert("app");
+        System.out.println(trie.search("app"));
     }
 }

@@ -4,14 +4,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
+ * 994.腐烂的橘子
  * @author 15304
  */
 public class RottingOranges {
 
     /**
      * BFS求腐烂橘子到所有新鲜橘子的最短路径
-     * @param grid
-     * @return
+     * @param grid m * n网格，0表示空白，1表示新鲜橘子，2表示腐烂橘子
+     * @return 直到单元格中没有新鲜橘子为止所必须经过的最小分钟数
      */
     public int orangesRotting(int[][] grid) {
         int m = grid.length;
@@ -36,7 +37,7 @@ public class RottingOranges {
             round++;
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-
+                // rot表示腐烂的橘子
                 int[] rot = queue.poll();
                 int r = rot[0], c = rot[1];
 
@@ -71,6 +72,7 @@ public class RottingOranges {
         }
     }
     public static void main(String[] args) {
-
+        int[][] grid = new int[][]{{2,1,1},{1,1,0},{0,1,1}};
+        System.out.println(new RottingOranges().orangesRotting(grid));
     }
 }

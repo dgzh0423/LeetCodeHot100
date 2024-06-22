@@ -1,10 +1,16 @@
 package main.graph;
 
 /**
- * <a href="https://leetcode.cn/problems/number-of-islands/solutions/211211/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/?envType=study-plan-v2&envId=top-100-liked">...</a>
+ * 200.岛屿数量
  * @author 15304
  */
 public class IslandsNumber {
+
+    /**
+     * 时间复杂度 O(m*n) 空间复杂度 O(m*n)
+     * @param grid 由 '1'（陆地）和 '0'（水）组成的的二维网格，水平或垂直相邻的 '1' 只算一块陆地
+     * @return 岛屿的数量
+     */
     public int numIslands(char[][] grid) {
         int count = 0;
         for (int r = 0; r < grid.length; r++) {
@@ -44,6 +50,12 @@ public class IslandsNumber {
     }
 
     public static void main(String[] args) {
-
+        char[][] grid = {
+                {'1', '1', '1', '1', '0'},
+                {'1', '1', '0', '1', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0', '0', '0', '0', '0'}
+        };
+        System.out.println(new IslandsNumber().numIslands(grid));
     }
 }
