@@ -120,14 +120,17 @@ public class Solutions {
      */
     public int partition(int[] nums, int left, int right) {
         // 以 nums[left] 为 pivot
+        int pivot = nums[left];
         int i = left, j = right;
+        // 细节注意：我们选择了左端点为pivot，那么一定是先从右向左，再从左向右，顺序不能变
+        // 例如：[0, 0, 0, 0, 1]，pivot = nums[0] = 0，如果先从左向右找首个大于pivot的元素，那么就会变成 [1, 0, 0, 0, 0]
         while (i < j) {
             // 从右向左找首个小于pivot的元素
-            while (i < j && nums[j] >= nums[left]) {
+            while (i < j && nums[j] >= pivot) {
                 j--;
             }
             // 从左向右找首个大于pivot的元素
-            while (i < j && nums[i] <= nums[left]) {
+            while (i < j && nums[i] <= pivot) {
                 i++;
             }
             swap(nums, i, j);
