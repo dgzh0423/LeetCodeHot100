@@ -20,18 +20,29 @@ public class MaximumPrimeDifference {
     }
 
     /**
-     * 判断一个数是否是质数
-     * @param n  1 <= n <= 100，但 1 不是质数
+     * 判断一个数是否是质数: 如果一个数 n 是合数（非质数），那么它必然有一个不大于sqrt(n)的因子
+     * @param n  本题中 1 <= n <= 100，1 不是质数
      * @return true/false
      */
     private boolean isPrime(int n) {
-        // 对于一个数 n，只要它不能被某个整数 i 整除（1 < i <= sqrt(n)），则它就是质数
-        for (int i = 2; i * i <= n; i++) {
+        if (n <= 1) {
+            return false;
+        }
+        if (n == 2) {
+            return true;
+        }
+        // 偶数一定不是质数
+        if (n % 2 == 0) {
+            return false;
+        }
+        int sqrtN = (int) Math.sqrt(n) + 1;
+        // 只需要检查奇数
+        for (int i = 3; i < sqrtN; i += 2) {
             if (n % i == 0) {
                 return false;
             }
         }
-        return n >= 2;
+        return true;
     }
 
     public static void main(String[] args) {
