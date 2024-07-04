@@ -7,8 +7,8 @@ public class DepthFirstSearch {
 
     /**
      * 一棵二叉树的最大深度可以通过子树的最大深度推导出来
-     * @param root
-     * @return
+     * @param root 当前节点，从根节点开始遍历
+     * @return 此二叉树的最大深度，就是根节点到「最远」叶子节点的最长路径上的节点数
      */
     public int maxDepth(TreeNode root) {
         if(root == null) {
@@ -26,8 +26,8 @@ public class DepthFirstSearch {
     int depth = 0;
     /**
      * 遍历一遍二叉树，用一个外部变量记录每个节点所在的深度，取最大值就可以得到最大深度
-     * @param root
-     * @return
+     * @param root 当前节点，从根节点开始遍历
+     * @return 此二叉树的最大深度
      */
     public int maxDepthII(TreeNode root) {
         if(root == null) {
@@ -53,5 +53,13 @@ public class DepthFirstSearch {
         depth--;
     }
 
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
+        System.out.println(new DepthFirstSearch().maxDepth(root));
+        System.out.println(new DepthFirstSearch().maxDepthII(root));
+    }
 }
