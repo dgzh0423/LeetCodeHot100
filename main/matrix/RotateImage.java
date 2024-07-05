@@ -3,6 +3,7 @@ package main.matrix;
 import java.util.Arrays;
 
 /**
+ * 48.旋转图像
  * @author 15304
  */
 public class RotateImage {
@@ -17,14 +18,14 @@ public class RotateImage {
             for (int j = 0; j < (n + 1) / 2; j++) {
                 // 暂存 A 至 tmp
                 int tmp = matrix[i][j];
-                // 元素旋转操作
-                //A <- D
+                // 旋转操作：假设原位置为 matrix[i][j]，则旋转后位置为 matrix[j][n - 1 - i]
+                // A <- D
                 matrix[i][j] = matrix[n - 1 - j][i];
-                //D <- C
+                // D <- C
                 matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];
-                //C <- B
+                // C <- B
                 matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];
-                //B <- tmp(A)
+                // B <- tmp(A)
                 matrix[j][n - 1 - i] = tmp;
             }
         }
