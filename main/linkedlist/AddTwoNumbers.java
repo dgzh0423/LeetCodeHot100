@@ -1,11 +1,13 @@
 package main.linkedlist;
 
 /**
+ * 2.两数相加
  * @author 15304
  */
 public class AddTwoNumbers {
+
     /**
-     *
+     * 链表的每个节点表示一位，从最低位开始
      * @param l1
      * @param l2
      * @return
@@ -17,7 +19,7 @@ public class AddTwoNumbers {
         int carry = 0;
 
         while(l1 != null || l2 != null) {
-            //短的链表用0补
+            // 当前位进行加法运算，缺位用0补
             int x = l1 == null ? 0 : l1.val;
             int y = l2 == null ? 0 : l2.val;
             int sum = x + y + carry;
@@ -34,14 +36,12 @@ public class AddTwoNumbers {
                 l2 = l2.next;
             }
         }
-        //如果两个链表全部遍历完毕后，进位值为 1，则在新链表最前方添加节点 1
+        // 如果两个链表全部遍历完毕后，进位值为 1，则在新链表最前方添加节点 1
         if(carry == 1) {
             cur.next = new ListNode(carry);
         }
         return dum.next;
     }
 
-    public static void main(String[] args) {
-
-    }
+    public static void main(String[] args) {}
 }
