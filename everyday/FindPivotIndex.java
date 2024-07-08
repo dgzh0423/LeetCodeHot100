@@ -12,19 +12,13 @@ public class FindPivotIndex {
             sum += num;
         }
         int leftSum = 0;
-        int res = 0;
         for (int i = 0; i < nums.length; i++){
             if (leftSum == sum - leftSum - nums[i]){
-                res = i;
-                return res;
-            }else {
-                leftSum += nums[i];
-                if (leftSum == sum && i == nums.length - 1){
-                    return -1;
-                }
+                return i;
             }
+            leftSum += nums[i];
         }
-        return res;
+        return -1;
     }
 
     public static void main(String[] args) {
