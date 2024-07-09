@@ -41,6 +41,47 @@ public class BreadthFirstSearch {
         return res;
     }
 
+    List<List<Integer>> res = new LinkedList<>();
+
+    /**
+     * 107.二叉树的层次遍历 II (自底向上输出每层节点)
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        if (root == null) {
+            return res;
+        }
+        List<TreeNode> nodes = new LinkedList<>();
+        nodes.add(root);
+        traverse(nodes);
+        return res;
+    }
+
+    private void traverse(List<TreeNode> curLevelNodes) {
+        // base case
+        if (curLevelNodes.isEmpty()) {
+            return;
+        }
+        // 保存当前层的节点的值和下一层的节点列表
+        List<Integer> nodeValues = new LinkedList<>();
+        List<TreeNode> nextLevelNodes = new LinkedList<>();
+        for (TreeNode node : curLevelNodes) {
+            nodeValues.add(node.val);
+            if (node.left != null) {
+                nextLevelNodes.add(node.left);
+            }
+            if (node.right != null) {
+                nextLevelNodes.add(node.right);
+            }
+        }
+        // 前序位置添加结果，可以得到自顶向下的层序遍历
+        // res.add(nodeValues);
+        traverse(nextLevelNodes);
+        // 后序位置添加结果，可以得到自底向上的层序遍历结果
+        res.add(nodeValues);
+    }
+
     /**
      * BFS求最大深度
      * @param root
