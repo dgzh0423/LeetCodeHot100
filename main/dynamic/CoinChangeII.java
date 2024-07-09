@@ -1,6 +1,7 @@
 package main.dynamic;
 
 /**
+ * 518. 零钱兑换 II
  * @author 15304
  */
 public class CoinChangeII {
@@ -16,6 +17,7 @@ public class CoinChangeII {
 
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= amount; j++) {
+                // 对于第i枚硬币coins[i-1]，要凑到金额 j，我们有两种选择：选或者不选
                 if (j - coins[i-1] >= 0){
                     dp[i][j] = dp[i-1][j] + dp[i][j - coins[i-1]];
                 }else {
@@ -32,6 +34,8 @@ public class CoinChangeII {
         // dp 数组的转移只和 dp[i][..] 和 dp[i-1][..] 有关，所以可以优化空间
         for (int coin : coins) {
             for (int j = coin; j <= amount; j++) {
+                // 对于当前硬币coin，要凑到amount = j，我们有两种选择：选或者不选
+                // 如果选择当前硬币，则相当于先凑出金额 j - coin，再加上一枚当前硬币
                 dp[j] = dp[j] + dp[j - coin];
             }
         }
