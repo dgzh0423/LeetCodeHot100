@@ -1,9 +1,11 @@
 package main.twopoints;
 
 /**
+ * 42.接雨水
  * @author 15304
  */
 public class TrapRainWater {
+
     public static int trap(int[] height) {
         int res = 0;
 
@@ -13,10 +15,11 @@ public class TrapRainWater {
 
            优化：max_left[i] = Max(max_left[i-1], height[i-1]) 从左往右遍历
                 max_right[i] = Max(max_right[i+1], height[i+1]) 从右往左遍历
+                int min = Math.min(max_left[i], max_right[i]) 获取 min 就不需要再去遍历整个数组了
            时间复杂度为 O(n)  空间复杂度 O(n）
          */
 
-        //两端的列不会存水
+        // 两端的列不会存水
         for (int i = 1; i < height.length - 1; i++) {
             // 找到 min{柱子i左边最高列的高度，柱子i右边最高列的高度}
             int min = getMin(height, i);
@@ -30,15 +33,14 @@ public class TrapRainWater {
 
     private static int getMin(int[] height, int i) {
         int leftMax = 0;
-        for (int j = i -1; j>=0; j--){
-            //这里≥或者＞无所谓，因为我们只需要左边最高列的高度
+        for (int j = i - 1; j >= 0; j--){
+            // 这里≥或者＞无所谓，因为我们只需要两边最高列的高度
             if (height[j] > leftMax){
                 leftMax = height[j];
             }
         }
-
         int rightMax = 0;
-        for (int j = i +1; j < height.length; j++){
+        for (int j = i + 1; j < height.length; j++){
             // 找到右边最高列的高度
             if (height[j] > rightMax){
                 rightMax = height[j];
@@ -61,7 +63,7 @@ public class TrapRainWater {
         int res = 0;
 
         for (int k = 1; k < len - 1 ; k++) {
-            //看柱子i
+            // 看柱子i
             if (height[i-1] < height[j+1]){
                 iLeftMax = Math.max(iLeftMax, height[i-1]);
                 if (iLeftMax > height[i]) {
@@ -69,7 +71,7 @@ public class TrapRainWater {
                 }
                 i++;
             }
-            //看柱子j
+            // 看柱子j
             else {
                 jRightMax = Math.max(jRightMax, height[j+1]);
                 if (jRightMax > height[j]){
