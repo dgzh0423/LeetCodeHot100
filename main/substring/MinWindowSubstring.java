@@ -1,6 +1,7 @@
 package main.substring;
 
 /**
+ * 76.最小覆盖子串
  * @author 15304
  */
 public class MinWindowSubstring {
@@ -66,8 +67,8 @@ public class MinWindowSubstring {
         }
         // l,r窗口左右边界
         int l = 0, r = 0;
-        while (l <= length2 -length1){
-            //固定 l，让 r 向右探测
+        while (l <= length2 - length1){
+            // 固定 l，让 r 向右探测
             while (r < l + length1 && s1count[s2.charAt(r) - 'a'] > 0){
                 s1count[s2.charAt(r) - 'a']--;
                 r++;
@@ -76,7 +77,8 @@ public class MinWindowSubstring {
             if (r == l + length1){
                 return true;
             }
-            //窗口不符合条件(有其他字符，或者字符个数不对)，左边界右移
+            // 窗口不符合条件(有其他字符，或者字符个数不对)，左边界右移，右边界不动
+            // 这里加到s1count里的字符并不符合条件，由于右边界不同，会由上面的while循环处理，将这些不符合条件的字符从s1count中再减去
             s1count[s2.charAt(l) - 'a']++;
             l++;
         }
