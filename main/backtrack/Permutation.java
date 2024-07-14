@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * 46.全排列
  * @author 15304
  */
 public class Permutation {
@@ -52,6 +53,6 @@ public class Permutation {
     public static void main(String[] args) {
         int[] nums = {1,2,3};
         Permutation permutation = new Permutation();
-        System.out.println(" 输出 " + permutation.permute(nums));
+        System.out.println("全排列 " + permutation.permute(nums));
     }
 }

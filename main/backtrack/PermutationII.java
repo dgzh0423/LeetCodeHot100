@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * 47.全排列 II
  * @author 15304
  */
 public class PermutationII {
