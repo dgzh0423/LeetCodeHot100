@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * 78.子集
  * @author 15304
  */
 public class Subsets {
@@ -24,7 +25,8 @@ public class Subsets {
     // 回溯算法核心函数，遍历子集问题的回溯树
     private void backtrack(int[] nums, int start) {
 
-        // 前序位置，每个节点的值都是一个子集
+        // 前序位置记录track
+        // 如果想要求指定大小为k的子集，在这里判断一下 track.size() == k 即可
         res.add(new LinkedList<>(track));
 
         // 回溯算法标准框架
@@ -42,6 +44,6 @@ public class Subsets {
        int[] nums = {1, 2, 3};
        Subsets subsets = new Subsets();
        List<List<Integer>> lists = subsets.subsets(nums);
-       System.out.println(" 输出 " + lists);
+       System.out.println("子集 " + lists);
     }
 }

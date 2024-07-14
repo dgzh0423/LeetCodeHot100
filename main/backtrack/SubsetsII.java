@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ * 90.子集 II
  * @author 15304
  */
 public class SubsetsII {
@@ -15,7 +15,7 @@ public class SubsetsII {
     LinkedList<Integer> track = new LinkedList<>();
 
     /**
-     * @param nums 元素可重但不可复选
+     * @param nums 元素可重不可复选
      * @return res
      */
     public List<List<Integer>> subsetsWithDup(int[] nums) {
