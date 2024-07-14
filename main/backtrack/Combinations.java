@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * 77.组合
  * @author 15304
  */
 public class Combinations {
@@ -14,7 +15,7 @@ public class Combinations {
 
 
     /**
-     * 77.组合 等价于 子集 问题
+     * 等价于求 大小为 k 的子集
      * @param n 元素无重不可复选
      * @param k 组合长度
      * @return k个数的组合
