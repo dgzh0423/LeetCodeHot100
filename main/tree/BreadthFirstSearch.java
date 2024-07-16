@@ -23,10 +23,10 @@ public class BreadthFirstSearch {
 
         while (!queue.isEmpty()) {
             //获取当前队列的长度，即当前层的节点个数
-            int size= queue.size();
+            int size = queue.size();
             //初始化 tmp ，用于储存当前层的节点值
             List<Integer> tmp = new ArrayList<>();
-            for(int i=0; i<size; i++) {
+            for(int i = 0; i < size; i++) {
                 TreeNode cur = queue.remove();
                 tmp.add(cur.val);
                 if (cur.left != null) {
