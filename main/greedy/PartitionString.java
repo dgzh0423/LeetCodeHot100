@@ -1,9 +1,10 @@
-package main.greedyalgorithm;
+package main.greedy;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 763. 划分字母区间
  * @author 15304
  */
 public class PartitionString {

@@ -1,7 +1,7 @@
-package main.greedyalgorithm;
+package main.greedy;
 
 /**
- * 134.加油站
+ * 134. 加油站
  * @author 15304
  */
 public class GasStation {

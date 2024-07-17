@@ -1,6 +1,7 @@
-package main.greedyalgorithm;
+package main.greedy;
 
 /**
+ * 45. 跳跃游戏 II
  * @author 15304
  */
 public class JumpGameII {

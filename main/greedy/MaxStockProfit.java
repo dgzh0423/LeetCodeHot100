@@ -1,6 +1,7 @@
-package main.greedyalgorithm;
+package main.greedy;
 
 /**
+ * 121. 买卖股票的最佳时机
  * @author 15304
  */
 public class MaxStockProfit {
