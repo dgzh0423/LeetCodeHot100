@@ -13,7 +13,7 @@ public class MinLevelsWithMorePoints {
         // count[] 用于保存困难关和简单关的个数
         int[] count = new int[2];
         for (int i : possible){
-            count[i % 2]++;
+            count[i]++;
         }
         // Alice 和 Bob 至少需要完成 1 个关卡
         int AliceScore = 0;
